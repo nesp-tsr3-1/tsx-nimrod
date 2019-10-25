@@ -1,0 +1,22 @@
+#!/sw7/RCC/NimrodG/embedded-1.1.4/bin/nimexec
+#PBS -lselect=8:ncpus=4:ompthreads=1:mem=8gb
+#PBS -A UQ-RCC
+#PBS -lwalltime=10:00:00
+#PBS -lplace=scatter
+#NIM shebang /bin/bash
+#NIM parameter group text select anyof "All" "Terrestrial" "Wetland" "Marine" "Shoreline (migratory)"
+#NIM parameter subgroup text select anyof "All" "Tropicbirds Frigatebirds Gannets Boobies" "Gulls Terns Noddies Skuas Jaegers" "Rainforest" "Penguins" "Tropical savanna woodland" "Island endemic" "Petrels and Shearwaters" "Grassland" "Albatrosses and Giant-Petrels" "Dry sclerophyll woodland/forest" "Arid Woodland/ shrubland" "Parrots, Lorikeets, Rosellas, Cockatoos, Corellas" "Heathland" "Mallee woodland"
+#NIM parameter state text select anyof "All" "Australian Capital Territory" "Commonwealth" "Queensland" "New South Wales" "Northern Territory" "South Australia" "Western Australia" "Tasmania" "Victoria" "Australian Capital Territory+New South Wales"
+#NIM parameter statusauth text select anyof "Max" "BirdLifeAustralia" "EPBC" "IUCN"
+#NIM parameter status text select anyof "Vulnerable+Endangered+Critically Endangered" "Near Threatened+Vulnerable+Endangered+Critically Endangered" "Near Threatened"
+
+if [ -z ${NIMROD_VAR_jobindex} -a -z ${NIMROD_VAR_group} -a -z ${NIMROD_VAR_subgroup} -a -z ${NIMROD_VAR_state} -a -z ${NIMROD_VAR_statusauth} -a -z ${NIMROD_VAR_status} ]; then
+	echo "NIMROD_VAR_*** is not set"
+	exit 2
+fi
+module load R/3.5.0
+export LPI_Script="/home/uqhngu36/LPI/new_embedded/lpi_run1.R"
+export LPI_Csv="/90days/uqhngu36/lpi/lpi-2018-10-16/lpi-filtered.csv"
+export Output="/30days/uqhngu36/lpi/test/output/"
+mkdir -p ${Output}
+Rscript "${LPI_Script}" "${NIMROD_VAR_group}" "${NIMROD_VAR_subgroup}" "${NIMROD_VAR_state}" "${NIMROD_VAR_statusauth}" "${NIMROD_VAR_status}" 1000 1985 2015 "${LPI_Csv}" "${Output}" 1950
