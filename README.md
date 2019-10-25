@@ -9,7 +9,7 @@ Nimrod files for TSX runs - Tinaroo@UQ
 	.libPaths(new='~/R/x86_64-pc-linux-gnu-library/3.5/')
 	dir.create('~/R/x86_64-pc-linux-gnu-library/3.5/', showWarnings = FALSE, recursive = TRUE)
 	.libPaths()
-	```
+
 3. install packages: devtools, rlpi and its dependencies
 
 # run nimrod
