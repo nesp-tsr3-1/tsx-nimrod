@@ -1,7 +1,7 @@
 library(rlpi)
 ####################################################################
 ## Collect arguments
-args <- commandArgs(TRUE) 
+args <- commandArgs(TRUE)
 ## Default setting when no arguments passed
 if(length(args) != 11) {
   args <- c("--help")
@@ -19,10 +19,10 @@ if("--help" %in% args) {
       status
       bootstrap
       referenceyear
+      startyear
       plotmax
       input
       output
-      startyear
       --help
       ")
   q(save="no")
@@ -34,11 +34,10 @@ statusAuthArg <- args[4]
 statusArg <- args[5]
 bootstrapArg <- args[6]
 referenceYearArg <- args[7]
-plotMaxArg <- args[8]
-inputArg <- args[9]
-outputArg <- args[10]
-startyearArg <- args[11]
-endyearArg <- args[12]
+startyearArg <- args[8]
+plotMaxArg <- args[9]
+inputArg <- args[10]
+outputArg <- args[11]
 ####### values
 in_file <- "lpi.csv"
 groups <- NULL

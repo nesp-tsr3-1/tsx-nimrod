@@ -15,8 +15,8 @@ if [ -z ${NIMROD_VAR_jobindex} -a -z ${NIMROD_VAR_group} -a -z ${NIMROD_VAR_subg
 	exit 2
 fi
 module load R/3.5.0
-export LPI_Script="/home/uqhngu36/LPI/new_embedded/lpi_run1.R"
-export LPI_Csv="/90days/uqhngu36/lpi/lpi-2018-10-16/lpi-filtered.csv"
+export LPI_Script="${PBS_O_WORKDIR}/lpi_run1.R"
+export LPI_Csv="${PBS_O_WORKDIR}/lpi-filtered.csv"
 export Output="/30days/uqhngu36/lpi/test/output/"
 mkdir -p ${Output}
-Rscript "${LPI_Script}" "${NIMROD_VAR_group}" "${NIMROD_VAR_subgroup}" "${NIMROD_VAR_state}" "${NIMROD_VAR_statusauth}" "${NIMROD_VAR_status}" 1000 1985 2015 "${LPI_Csv}" "${Output}" 1950
+Rscript "${LPI_Script}" "${NIMROD_VAR_group}" "${NIMROD_VAR_subgroup}" "${NIMROD_VAR_state}" "${NIMROD_VAR_statusauth}" "${NIMROD_VAR_status}" 1000 1985 1950 2015 "${LPI_Csv}" "${Output}"

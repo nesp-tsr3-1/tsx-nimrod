@@ -13,8 +13,11 @@ Nimrod files for TSX runs - Tinaroo@UQ
 3. install packages: devtools, rlpi and its dependencies
 
 # run nimrod
-change paths in lpi_pln.pbs accordingly
-and run
+1. copy "lpi-filtered.csv" to current directory
+2. change Output path in lpi_pln.pbs
+3. and run
+   ```sh
+   qsub lpi_pln.pbs
+   ```
 
-qsub lpi_pln.pbs
-
+Embedded-nimrod documentation: https://github.com/uq-rcc/nimrod-embedded
